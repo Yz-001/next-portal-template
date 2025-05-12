@@ -10,6 +10,7 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import { login, type LoginParams } from '@/api/common'
 
 export function LoginForm() {
   const form = useForm({
@@ -19,9 +20,14 @@ export function LoginForm() {
     }
   })
 
-  const onSubmit = (values: unknown) => {
-    console.log("表单提交:", values)
-    // 添加实际登录逻辑
+  const onSubmit = async(values: LoginParams) => {
+    try {
+      const response = await login(values)
+      localStorage.setItem('token', response.token)
+      // 跳转到首页
+    } catch (error) {
+      console.error('Login failed:', error)
+    }
   }
 
   return (
