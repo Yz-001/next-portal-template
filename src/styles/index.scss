@@ -1,6 +1,6 @@
-@import "./variables";
-@import "./scrollbar";
-@import "./tailwindcss";
+@use "./variables.scss";
+@use "./scrollbar.scss";
+@use "./tailwindcss.css";
 
 
 // 页面
@@ -9,8 +9,8 @@
   height: 100%;
   padding: 10px;
   overflow: hidden auto;
-  background-color: var(--el-bg-color-overlay);
-  border-radius: $--border-size-radius-base;
+  // background-color: var(--el-bg-color-overlay);
+  // border-radius: $--border-size-radius-base;
 
   &--nopadding {
     padding: 0;
@@ -30,18 +30,18 @@
   }
 }
 
-.oper-hover {
-  &:hover {
-    color: var(--el-color-primary);
-    cursor: pointer;
+// .oper-hover {
+//   &:hover {
+//     color: var(--el-color-primary);
+//     cursor: pointer;
 
-    .svg-raw {
-      path {
-        fill: var(--el-color-primary);
-      }
-    }
-  }
-}
+//     .svg-raw {
+//       path {
+//         fill: var(--el-color-primary);
+//       }
+//     }
+//   }
+// }
 
 // 应用默认加载gif
 .app-loading {
