@@ -11,11 +11,11 @@ import {
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { login, type LoginParams } from '@/api/common'
-
+import { setToken } from "@/lib/storage";
 export function LoginForm() {
   const form = useForm({
     defaultValues: {
-      username: "",
+      userName: "",
       password: "",
     }
   })
@@ -23,8 +23,8 @@ export function LoginForm() {
   const onSubmit = async(values: LoginParams) => {
     try {
       const response = await login(values)
-      localStorage.setItem('token', response.token)
-      // 跳转到首页
+      setToken(response?.data?.loginKey)
+      // TODO跳转到首页
     } catch (error) {
       console.error('Login failed:', error)
     }
@@ -35,7 +35,7 @@ export function LoginForm() {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
         <FormField
           control={form.control}
-          name="username"
+          name="userName"
           render={({ field }) => (
             <FormItem>
               <FormLabel>用户名</FormLabel>
@@ -46,20 +46,20 @@ export function LoginForm() {
                   onChange={(e) => {
                     field.onChange(e)
                     if (e.target.value.length < 2) {
-                      form.setError('username', {
+                      form.setError('userName', {
                         type: 'manual',
                         message: '用户名至少2个字符'
                       })
                     } else {
-                      form.clearErrors('username')
+                      form.clearErrors('userName')
                     }
                   }}
-                  aria-invalid={!!form.formState.errors.username}
+                  aria-invalid={!!form.formState.errors.userName}
                 />
               </FormControl>
-              {form.formState.errors.username && (
+              {form.formState.errors.userName && (
                 <p role="alert" className="text-sm text-red-500">
-                  {form.formState.errors.username.message}
+                  {form.formState.errors.userName.message}
                 </p>
               )}
             </FormItem>

@@ -1,4 +1,4 @@
-import { alovaClient } from '@/lib/alova'
+import { request } from '@/lib/request'
 
 interface UserInfo {
     id: string
@@ -13,14 +13,14 @@ interface UpdateUserProfileParams {
     avatar?: string
 }
 
-export const getUserInfo = () => alovaClient.Get<UserInfo>('/user/info')
+export const getUserInfo = () => request.get<UserInfo>('/user/info')
 
 export const getUserList = (params: { page: number; size: number }) =>
-    alovaClient.Get<{
+    request.get<{
         list: UserInfo[]
         total: number
     }>('/user/list', { params })
 
-export const updateUserProfile = (data: UpdateUserProfileParams) => alovaClient.Put<UserInfo>('/user/profile', data)
+export const updateUserProfile = (data: UpdateUserProfileParams) => request.put<UserInfo>('/user/profile', data)
 
-export const deleteUser = (userId: string) => alovaClient.Delete(`/user/${userId}`)
+export const deleteUser = (userId: string) => request.del(`/user/${userId}`)

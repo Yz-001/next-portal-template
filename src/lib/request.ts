@@ -1,6 +1,7 @@
 import { createAlova } from 'alova'
 import { axiosRequestAdapter } from '@alova/adapter-axios'
 import ReactHook from 'alova/react'
+import { getToken } from "@/lib/storage";
 
 interface ApiError {
     status: number
@@ -89,7 +90,7 @@ export const alovaClient = createAlova({
     // 2. 正确配置requestAdapter
     requestAdapter: adapter,
     beforeRequest(method) {
-        const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null
+        const token = typeof window !== 'undefined' ? getToken() : null
         if (token) {
             method.config.headers.Authorization = `Bearer ${token}`
         }
@@ -100,3 +101,24 @@ export const alovaClient = createAlova({
         onError: globalErrorInterceptor
     }
 })
+
+// 封装请求方法（带泛型支持）
+export const request = {
+    get: <T>(url: string, params?: Record<string, any>, options?: RequestOptions) => alovaClient.Get<T>(url, { params, ...options }).send(),
+
+    post: <T>(url: string, data?: any, options?: RequestOptions) => alovaClient.Post<T>(url, data, options).send(),
+
+    put: <T>(url: string, data?: any, options?: RequestOptions) => alovaClient.Put<T>(url, data, options).send(),
+
+    delete: <T>(url: string, params?: Record<string, any>, options?: RequestOptions) =>
+        alovaClient.Delete<T>(url, { params, ...options }).send(),
+
+    patch: <T>(url: string, data?: any, options?: RequestOptions) => alovaClient.Patch<T>(url, data, options).send()
+}
+
+// 类型定义
+type RequestOptions = {
+    headers?: Record<string, string>
+    timeout?: number
+    // 其他 alova 配置项...
+}

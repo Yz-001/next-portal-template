@@ -1,7 +1,7 @@
-import { alovaClient } from '@/lib/alova'
+import { request } from '@/lib/request'
 
 export interface LoginParams {
-    username: string
+    userName: string
     password: string
 }
 
@@ -14,8 +14,8 @@ export interface LoginResponse {
     }
 }
 
-export const login = (data: LoginParams) => alovaClient.Post<LoginResponse>('/auth/login', data)
+export const login = (data: LoginParams) => request.post<LoginResponse>('/admin/admin-user/login', data)
 
-export const logout = () => alovaClient.Post('/auth/logout')
+export const logout = () => request.post('/auth/logout')
 
-export const refreshToken = () => alovaClient.Post<{ token: string; expiresIn: number }>('/auth/refresh')
+export const refreshToken = () => request.post<{ token: string; expiresIn: number }>('/auth/refresh')
