@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { PortalLayout } from '@/layouts/portal';
-import "@/styles/globals.css";
+import "@/styles/index.scss";
 
 // 导入Geist Sans 字体的实例化对象 现代无衬线字体
 const geistSans = Geist({
