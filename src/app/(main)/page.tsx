@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import HeroBanner from '@/components/home/HeroBanner'
 import NewsCard from '@/components/home/NewsCard'
-import { getNewsListApi } from '@/api/news'
+import { getNewsListApi } from '@/services/news.service'
 
 // 将类型定义移到组件外部，避免重复声明
 type NewsItem = {

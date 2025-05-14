@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { login, type LoginParams } from '@/api/common'
+import { login, type LoginParams } from '@/services/common.service'
 import { setToken } from "@/lib/storage";
 export function LoginForm() {
   const form = useForm({
@@ -20,7 +20,7 @@ export function LoginForm() {
     }
   })
 
-  const onSubmit = async(values: LoginParams) => {
+  const onSubmit = async (values: LoginParams) => {
     try {
       const response = await login(values)
       setToken(response?.data?.loginKey)

@@ -8,4 +8,4 @@ interface NewInfo {
     category: string
     slug: string
 }
-export const getNewsListApi = () => request.get<NewInfo>('/api/news/list')
+export const getNewsListApi = () => request.get<NewInfo>('/api/v1/news/list')
