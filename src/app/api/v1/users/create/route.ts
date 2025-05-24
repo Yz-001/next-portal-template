@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/prisma'
+import { prisma } from '@/lib/server/prisma'
 import { ApiResponse } from '@/lib/server/apiResponse'
 
 export async function POST(req: Request, res: Response) {
