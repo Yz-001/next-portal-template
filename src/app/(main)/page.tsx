@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import HeroBanner from '@/components/home/HeroBanner'
 import NewsCard from '@/components/home/NewsCard'
-import { getNewsListApi } from '@/services/news.service'
+import { getNewsListApi } from '@/client/news.client'
 
 // 将类型定义移到组件外部，避免重复声明
 type NewsItem = {
@@ -58,9 +58,9 @@ export default function Home() {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {isLoading ? (
                             // 加载状态
-                            Array(3).fill(0).map((_, i) => (
-                                <div key={i} className="animate-pulse bg-gray-200 h-64 rounded-lg" />
-                            ))
+                            Array(3)
+                                .fill(0)
+                                .map((_, i) => <div key={i} className="animate-pulse bg-gray-200 h-64 rounded-lg" />)
                         ) : error ? (
                             // 错误提示
                             <div className="col-span-full text-center text-red-600">

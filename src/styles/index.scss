@@ -1,6 +1,6 @@
-@use "./variables.scss";
-@use "./scrollbar.scss";
-@use "./tailwindcss.css";
+@import "./variables.scss";
+@import "./scrollbar.scss";
+@import "./tailwindcss.css";
 
 
 // 页面
@@ -10,7 +10,7 @@
   padding: 10px;
   overflow: hidden auto;
   // background-color: var(--el-bg-color-overlay);
-  // border-radius: $--border-size-radius-base;
+  border-radius: $--border-size-radius-base;
 
   &--nopadding {
     padding: 0;
