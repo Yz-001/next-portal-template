@@ -1,4 +1,15 @@
-// 默认使用配置的elemenet颜色，以下自定义系统其他颜色变量
+// 默认使用配置的颜色，以下自定义系统其他颜色变量
+// 主题色
+:root {
+  --theme-icon-light: var(--color-indigo-600); /* Tailwind's indigo-600 */
+  --theme-icon-dark: var(--color-violet-600); /* Tailwind's violet-600 */
+}
+
+.dark {
+  --theme-icon-light: var(--color-amber-500); /* Tailwind's amber-500 */
+  --theme-icon-dark: var(--color-violet-300); /* Tailwind's violet-300 */
+}
+
 // 背景色
 $--bg-color: #fff;
 $--bg-color-page: #f2f3f5;

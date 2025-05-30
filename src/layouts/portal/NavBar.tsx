@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { LoginForm } from '@/components/auth/LoginForm'
+import { ThemeToggle } from '@/layouts/themes/ThemeToggle'
 
 export function NavBar() {
     const pathname = usePathname()
@@ -50,20 +51,26 @@ export function NavBar() {
                         </svg>
                     </button>
 
-                    {/* 登录弹窗 */}
-                    <Dialog>
-                        <DialogTrigger asChild>
-                            <Button variant="outline" className="ml-4 bg-indigo-50 text-indigo-700 hover:bg-indigo-100">
-                                登录
-                            </Button>
-                        </DialogTrigger>
-                        <DialogContent className="sm:max-w-[425px]">
-                            <DialogHeader>
-                                <DialogTitle className="text-center">Login</DialogTitle>
-                            </DialogHeader>
-                            <LoginForm />
-                        </DialogContent>
-                    </Dialog>
+                    {/* 右侧操作按钮 */}
+                    <div className="flex items-center space-x-4">
+                        {/* 主题切换按钮 */}
+                        <ThemeToggle />
+
+                        {/* 登录弹窗 */}
+                        <Dialog>
+                            <DialogTrigger asChild>
+                                <Button variant="outline" className="ml-4 bg-indigo-50 text-indigo-700 hover:bg-indigo-100">
+                                    登录
+                                </Button>
+                            </DialogTrigger>
+                            <DialogContent className="sm:max-w-[425px]">
+                                <DialogHeader>
+                                    <DialogTitle className="text-center">Login</DialogTitle>
+                                </DialogHeader>
+                                <LoginForm />
+                            </DialogContent>
+                        </Dialog>
+                    </div>
                 </div>
             </div>
         </header>
