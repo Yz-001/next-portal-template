@@ -1,12 +1,15 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+import {NextConfig} from 'next';
+import createNextIntlPlugin from 'next-intl/plugin';
+
+const nextConfig: NextConfig = {
     reactStrictMode: true,
     images: {
         domains: [] // 允许加载的图片域名
     },
-    experimental: {
-        serverActions: true
-    },
+    // experimental: {
+    //     serverActions: true
+    // },
     async rewrites() {
         return process.env.NODE_ENV === 'development'
             ? [
@@ -19,4 +22,9 @@ const nextConfig = {
     }
 }
 
-export default nextConfig
+const withNextIntl = createNextIntlPlugin(
+    // Specify a custom path here
+  './src/lib/i18n/request.ts'
+);
+
+export default withNextIntl(nextConfig)

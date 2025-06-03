@@ -120,4 +120,8 @@
   body {
     @apply bg-background text-foreground;
   }
+  /* 移除默认的 <a> 样式 */
+  a {
+    color: revert;
+  }
 }

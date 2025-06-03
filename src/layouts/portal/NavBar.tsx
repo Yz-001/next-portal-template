@@ -6,8 +6,12 @@ import { usePathname } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { LoginForm } from '@/components/auth/LoginForm'
+import { ThemeToggle } from '@/layouts/themes/ThemeToggle'
+import { useTranslations } from 'next-intl'
+import LocaleSwitcher from '@/components/home/LocaleSwitcher'
 
 export function NavBar() {
+    const t = useTranslations()
     const pathname = usePathname()
 
     const navItems = [
@@ -24,7 +28,7 @@ export function NavBar() {
                     <div className="flex justify-between items-end">
                         {/* <Image src="/images/svg/mark.svg" alt="mark" width={28} height={28} /> */}
                         <Link href="/" className="text-xl font-bold text-indigo-600">
-                            Next Portal Template
+                            {t('common.title')}
                         </Link>
                     </div>
 
@@ -50,20 +54,29 @@ export function NavBar() {
                         </svg>
                     </button>
 
-                    {/* 登录弹窗 */}
-                    <Dialog>
-                        <DialogTrigger asChild>
-                            <Button variant="outline" className="ml-4 bg-indigo-50 text-indigo-700 hover:bg-indigo-100">
-                                登录
-                            </Button>
-                        </DialogTrigger>
-                        <DialogContent className="sm:max-w-[425px]">
-                            <DialogHeader>
-                                <DialogTitle className="text-center">Login</DialogTitle>
-                            </DialogHeader>
-                            <LoginForm />
-                        </DialogContent>
-                    </Dialog>
+                    {/* 右侧操作按钮 */}
+                    <div className="flex items-center space-x-4">
+                        {/* 主题切换按钮 */}
+                        <ThemeToggle />
+
+                        {/* 语言切换按钮 */}
+                        <LocaleSwitcher />
+
+                        {/* 登录弹窗 */}
+                        <Dialog>
+                            <DialogTrigger asChild>
+                                <Button variant="outline" className="ml-4 bg-indigo-50 text-indigo-700 hover:bg-indigo-100">
+                                    登录
+                                </Button>
+                            </DialogTrigger>
+                            <DialogContent className="sm:max-w-[425px]">
+                                <DialogHeader>
+                                    <DialogTitle className="text-center">Login</DialogTitle>
+                                </DialogHeader>
+                                <LoginForm />
+                            </DialogContent>
+                        </Dialog>
+                    </div>
                 </div>
             </div>
         </header>
