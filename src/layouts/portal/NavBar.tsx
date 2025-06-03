@@ -7,10 +7,11 @@ import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { LoginForm } from '@/components/auth/LoginForm'
 import { ThemeToggle } from '@/layouts/themes/ThemeToggle'
-import { useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl'
+import LocaleSwitcher from '@/components/home/LocaleSwitcher'
 
 export function NavBar() {
-    const t = useTranslations();
+    const t = useTranslations()
     const pathname = usePathname()
 
     const navItems = [
@@ -57,6 +58,9 @@ export function NavBar() {
                     <div className="flex items-center space-x-4">
                         {/* 主题切换按钮 */}
                         <ThemeToggle />
+
+                        {/* 语言切换按钮 */}
+                        <LocaleSwitcher />
 
                         {/* 登录弹窗 */}
                         <Dialog>
