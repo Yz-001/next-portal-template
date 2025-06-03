@@ -7,8 +7,10 @@ import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { LoginForm } from '@/components/auth/LoginForm'
 import { ThemeToggle } from '@/layouts/themes/ThemeToggle'
+import { useTranslations } from 'next-intl';
 
 export function NavBar() {
+    const t = useTranslations();
     const pathname = usePathname()
 
     const navItems = [
@@ -25,7 +27,7 @@ export function NavBar() {
                     <div className="flex justify-between items-end">
                         {/* <Image src="/images/svg/mark.svg" alt="mark" width={28} height={28} /> */}
                         <Link href="/" className="text-xl font-bold text-indigo-600">
-                            Next Portal Template
+                            {t('common.title')}
                         </Link>
                     </div>
 

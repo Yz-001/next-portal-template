@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { PortalLayout } from '@/layouts/portal';
+import { getLocale } from 'next-intl/server';
+import { NextIntlClientProvider } from 'next-intl';
 import "@/styles/index.scss";
 
 // 导入Geist Sans 字体的实例化对象 现代无衬线字体
@@ -21,22 +23,26 @@ export const metadata: Metadata = {
   description: "Next Portal Template",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <head>
         <link rel="icon" type="image/svg+xml" href="/images/svg/mark.svg" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <PortalLayout>
-          {children}
-        </PortalLayout>
+        <NextIntlClientProvider>
+          <PortalLayout>
+            {children}
+          </PortalLayout>
+        </NextIntlClientProvider>
       </body>
     </html>
   );
