@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { login, type LoginParams } from '@/client/common.client'
+import { login, type LoginParams } from '@/lib/client/apis/common.client'
 import { setToken } from '@/lib/storage'
 export function LoginForm() {
     const form = useForm({
